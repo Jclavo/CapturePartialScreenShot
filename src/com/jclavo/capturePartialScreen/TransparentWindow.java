@@ -23,7 +23,7 @@ public class TransparentWindow extends JFrame {
                 GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
 
-        //If translucent windows aren't supported, exit.
+        //If translucent windows aren't supported, exit..
         if (!gd.isWindowTranslucencySupported(TRANSLUCENT)) {
             System.err.println(
                     "Translucency is not supported");
