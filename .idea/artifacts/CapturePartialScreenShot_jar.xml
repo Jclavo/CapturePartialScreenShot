@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CapturePartialScreenShot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CapturePartialScreenShot_jar</output-path>
+    <root id="archive" name="CapturePartialScreenShot.jar">
+      <element id="module-output" name="CapturePartialScreenShot" />
+    </root>
+  </artifact>
+</component>
