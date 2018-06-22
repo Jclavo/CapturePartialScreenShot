@@ -17,6 +17,9 @@ public class App {
     private JButton btnCapture;
     private JTextField txtCantidad;
     private JLabel lblPages;
+    private JTextField txtBookName;
+    private JLabel lblbookname;
+    private JTextField textField1;
 
     //objetos
     private Robot robot =  new Robot();
@@ -35,6 +38,9 @@ public class App {
     private int y = 0;
 
     private int flag_capture_points = 0;
+
+    private String initial_directory = null;
+    private String books_name = null;
 
     TransparentWindow tw = null;
     //private static JFrame frame = new JFrame("App");
@@ -110,7 +116,26 @@ public class App {
 
                 tw.dispose();
 
+                if (txtCantidad.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Please, Enter page's number.");
+                    return;
+                }
+
+                if (txtBookName.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Please, Enter book's name.");
+                    return;
+                }
+
+
                 limit_screenShots = Integer.parseInt(txtCantidad.getText());
+                books_name = txtBookName.getText();
+
+
+                initial_directory = System.getProperty("user.home") + File.separator + "Desktop" + File.separator;
+                new File(initial_directory + File.separator + books_name).mkdir();
+                initial_directory = initial_directory + File.separator + books_name;
                 //textArea1.append("ScreenShots will start in 5 seg. " + "\n");
                 //textArea1.append("Focus on the selected area. " + "\n");
                 robot.delay(5000);
@@ -121,7 +146,9 @@ public class App {
 
                     //creamos un archivo de extensión .JPG en el directorio home del usuario del sistema
                     //File file = new File(System.getProperty("user.home") + File.separator + "imagen_" + contador_screenShots + ".jpg");
-                    File file = new File("C:\\Users\\jclavota\\Documents\\books" + File.separator + "imagen_" + contador_screenShots + ".jpg");
+
+                    File file = new File(initial_directory + File.separator + books_name+ "_" + contador_screenShots + ".jpg");
+                    //File file = new File("C:\\Users\\jclavota\\Documents\\books" + File.separator + "imagen_" + contador_screenShots + ".jpg");
                     //guardamos el contenido de la imagen en el archivo .JPG
                     try {
                         ImageIO.write(pantalla, "jpg", file);
@@ -132,12 +159,12 @@ public class App {
                         e1.printStackTrace();
                     }
 
-                    robot.keyPress(KeyEvent.VK_CONTROL);
+                    //robot.keyPress(KeyEvent.VK_CONTROL);
                     robot.keyPress(KeyEvent.VK_RIGHT);
                     robot.delay(1);
-                    robot.keyRelease(KeyEvent.VK_RIGHT);
+                    //robot.keyRelease(KeyEvent.VK_RIGHT);
                     robot.keyRelease(KeyEvent.VK_CONTROL);
-                    robot.delay(15000);
+                    robot.delay(10000);
                 }
             }
         });
